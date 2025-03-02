@@ -56,67 +56,83 @@
     </div>
   </section>
 
-  <section id="apply-now">
-    <div class="apply-container">
-      <h2>Apply for Admission</h2>
-      <p>Join <strong>Shree Janaprakash Secondary School</strong> and shape your future with quality education.</p>
-  
-      <form id="apply-form">
-        <div class="form-group">
-          <label for="name">Full Name:</label>
-          <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-        </div>
-  
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" placeholder="Enter your email" required>
-        </div>
-  
-        <div class="form-group">
-          <label for="phone">Phone Number:</label>
-          <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
-        </div>
-  
-        <div class="form-group">
-          <label for="grade">Applying for Grade/Class:</label>
-          <select id="grade" name="grade" required>
-            <option value="" disabled selected>Select Grade</option>
-            <option value="Nursery">Nursery</option>
-            <option value="1">Class 1</option>
-            <option value="2">Class 2</option>
-            <option value="3">Class 3</option>
-            <option value="4">Class 4</option>
-            <option value="5">Class 5</option>
-            <option value="6">Class 6</option>
-            <option value="7">Class 7</option>
-            <option value="8">Class 8</option>
-            <option value="9">Class 9</option>
-            <option value="10">Class 10</option>
-            <option value="11">Class 11</option>
-            <option value="12">Class 12</option>
-          </select>
-        </div>
-  
-        <div class="form-group">
-          <label for="message">Why do you want to join our school?</label>
-          <textarea id="message" name="message" rows="4" placeholder="Write a short statement"></textarea>
-        </div>
-  
-        <button type="submit" class="apply-btn">Submit Application</button>
-      </form>
-    </div>
-  </section>
-  
-  <script>
-    document.getElementById("apply-form").addEventListener("submit", function(event) {
-      event.preventDefault();
-      
+
+<section id="apply-now">
+  <div class="apply-container">
+    <h2>Apply for Admission</h2>
+    <p>Join <strong>Shree Janaprakash Secondary School</strong> and shape your future with quality education.</p>
+
+    <form id="apply-form" action="https://script.google.com/macros/s/AKfycbx2G-_rdFsU63h4YLnn-APTNCb3PYDIOV3AvceYsfSPNe1jbpUhhzPUx5-kYSsSyp7h/exec" method="POST">
+      <div class="form-group">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+      </div>
+
+      <div class="form-group">
+        <label for="grade">Applying for Grade/Class:</label>
+        <select id="grade" name="grade" required>
+          <option value="" disabled selected>Select Grade</option>
+          <option value="Nursery">Nursery</option>
+          <option value="1">Class 1</option>
+          <option value="2">Class 2</option>
+          <option value="3">Class 3</option>
+          <option value="4">Class 4</option>
+          <option value="5">Class 5</option>
+          <option value="6">Class 6</option>
+          <option value="7">Class 7</option>
+          <option value="8">Class 8</option>
+          <option value="9">Class 9</option>
+          <option value="10">Class 10</option>
+          <option value="11">Class 11</option>
+          <option value="12">Class 12</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Why do you want to join our school?</label>
+        <textarea id="message" name="message" rows="4" placeholder="Write a short statement"></textarea>
+      </div>
+
+      <button type="submit" class="apply-btn">Submit Application</button>
+    </form>
+  </div>
+</section>
+<script>
+  document.getElementById("apply-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    
+    var formData = new FormData(this);
+    
+    fetch(this.action, {
+      method: "POST",
+      body: formData
+    })
+    .then(response => response.text())
+    .then(response => {
       alert("🎉 Your application has been submitted successfully! We will contact you soon.");
-      
-      // Reset form after submission
-      document.getElementById("apply-form").reset();
-    });
-  </script>
+      document.getElementById("apply-form").reset(); // Reset the form after submission
+    })
+    .catch(error => console.error("Error:", error));
+  });
+</script>
+
+
+
+
+
+
+
+
    
     <section id="fees-payment">
         <div class="container">
@@ -750,7 +766,7 @@
 
 
 <!-- Footer Section -->
- 
+
 <section id="contact">
   <h2>Contact Us</h2>
   <div class="contact-container">
