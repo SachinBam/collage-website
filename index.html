@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Shree Janaprakash Secondary School</title>
+  <link rel="stylesheet" href="styles.css">
+ 
+</head>
+<body>
+  <!-- Header and Navigation -->
+  <header>
+    <nav>
+      <img src="logo.png" alt="Shree Janaprakash Secondary School Logo" class="logo">
+      <span class="school-name">Shree Janaprakash Secondary School Joshipur-2, Kailali</span>
+      <ul class="nav-links">
+        <li><a href="#" onclick="scrollToSection('fees-payment')">Home</a></li>
+        <li><a href="#" onclick="scrollToSection('about')">About</a></li>
+        <li><a href="#" onclick="scrollToSection('admissions')">Admissions</a></li>
+        
+      
+        
+        <!-- Dropdown Menu for "Academics" -->
+        <li class="dropdown">
+          <a href="#">Academics</a>
+          <ul class="dropdown-menu">
+            <li><a href="#" onclick="scrollToSection('curriculum')">Curriculum</a></li>
+            <li><a href="#" onclick="scrollToSection('exams')">Exams</a></li>
+            <li><a href="#" onclick="scrollToSection('results')">Results</a></li>
+          </ul>
+        </li>
+
+        <!-- Additional Sections -->
+        <li><a href="#" onclick="scrollToSection('events')">Events</a></li>
+        <li><a href="#" onclick="scrollToSection('gallery')">Gallery</a></li>
+        <li><a href="#" onclick="scrollToSection('news')">News</a></li>
+        <li><a href="#" onclick="scrollToSection('library')">Library</a></li>
+        <li><a href="#" onclick="scrollToSection('more')">Computer Lab</a></li>
+        <li><a href="#" onclick="scrollToSection('blog')">Blog</a></li>
+        <li><a href="#" onclick="scrollToSection('contact')">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  
+
+  <!-- Welcome Section -->
+  <section class="welcome">
+    <div class="welcome-content">
+        <marquee  scrollamount="20">
+      <h1 style="font-size: 60px;">Welcome to Shree Janaprakash Secondary School Joshipur-2, Kailali</h1></marquee>
+      <marquee  direction="right" scrollamount="20">
+      <p style="color: rgb(248, 252, 4); font-size: 48px;">Where knowledge meets excellence. Join us on the path to a brighter future!</p></marquee>
+      <button><a href="#" onclick="scrollToSection('principal')">Learn More </a></button>
+    </div>
+  </section>
+
+  <section id="apply-now">
+    <div class="apply-container">
+      <h2>Apply for Admission</h2>
+      <p>Join <strong>Shree Janaprakash Secondary School</strong> and shape your future with quality education.</p>
+  
+      <form id="apply-form">
+        <div class="form-group">
+          <label for="name">Full Name:</label>
+          <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+        </div>
+  
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+  
+        <div class="form-group">
+          <label for="phone">Phone Number:</label>
+          <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+        </div>
+  
+        <div class="form-group">
+          <label for="grade">Applying for Grade/Class:</label>
+          <select id="grade" name="grade" required>
+            <option value="" disabled selected>Select Grade</option>
+            <option value="Nursery">Nursery</option>
+            <option value="1">Class 1</option>
+            <option value="2">Class 2</option>
+            <option value="3">Class 3</option>
+            <option value="4">Class 4</option>
+            <option value="5">Class 5</option>
+            <option value="6">Class 6</option>
+            <option value="7">Class 7</option>
+            <option value="8">Class 8</option>
+            <option value="9">Class 9</option>
+            <option value="10">Class 10</option>
+            <option value="11">Class 11</option>
+            <option value="12">Class 12</option>
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <label for="message">Why do you want to join our school?</label>
+          <textarea id="message" name="message" rows="4" placeholder="Write a short statement"></textarea>
+        </div>
+  
+        <button type="submit" class="apply-btn">Submit Application</button>
+      </form>
+    </div>
+  </section>
+  
+  <script>
+    document.getElementById("apply-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+      
+      alert("🎉 Your application has been submitted successfully! We will contact you soon.");
+      
+      // Reset form after submission
+      document.getElementById("apply-form").reset();
+    });
+  </script>
+   
+    <section id="fees-payment">
+        <div class="container">
+          <h2>Fees Payment</h2>
+          <p>Select your grade, payment type, and pay securely through eSewa or Khalti.</p>
+      
+          <!-- Grade Selection -->
+          <label for="grade">Select Grade:</label>
+          <select id="grade" onchange="updateAmount()">
+            <option value="1">Grade 1</option>
+            <option value="2">Grade 2</option>
+            <option value="3">Grade 3</option>
+            <option value="4">Grade 4</option>
+            <option value="5">Grade 5</option>
+            <option value="6">Grade 6</option>
+            <option value="7">Grade 7</option>
+            <option value="8">Grade 8</option>
+            <option value="9">Grade 9</option>
+            <option value="10">Grade 10</option>
+            <option value="11">Grade 11</option>
+            <option value="12">Grade 12</option>
+          </select>
+      
+          <!-- Payment Type Selection -->
+          <div class="payment-toggle">
+            <button id="monthly-btn" class="active" onclick="setPaymentType('monthly')">Monthly Payment</button>
+            <button id="yearly-btn" onclick="setPaymentType('yearly')">Yearly Payment</button>
+            <button id="due-btn" onclick="setPaymentType('due')">Due Payment</button>
+          </div>
+      
+          <!-- Payment Form -->
+          <form id="payment-form">
+            <label for="student-name">Student Name:</label>
+            <input type="text" id="student-name" placeholder="Enter student name" required>
+      
+            <label for="student-id">Student ID:</label>
+            <input type="text" id="student-id" placeholder="Enter student ID" required>
+      
+            <label for="amount">Amount (NPR):</label>
+            <input type="number" id="amount" placeholder="Enter amount" required>
+      
+            <!-- Payment Buttons -->
+            <div class="payment-buttons">
+              <button type="button" class="esewa-btn" onclick="payWithEsewa()">Pay with eSewa</button>
+              <button type="button" class="khalti-btn" onclick="payWithKhalti()">Pay with Khalti</button>
+            </div>
+          </form>
+        </div>
+      </section>
+      
+    
+  </section>
+  <section id="about">
+    <div class="about-container">
+      <div class="about-content">
+        <h2>About Us</h2>
+        <p>Welcome to <strong>Shree Janaprakash Secondary School</strong>, a leading institution in Joshipur-2, Kailali, dedicated to providing quality education and nurturing young minds. Our school fosters an environment of learning, creativity, and excellence.</p>
+        
+        <h3>Our Mission</h3>
+        <p>Our mission is to empower students with knowledge, values, and skills to thrive in an ever-changing world. We focus on holistic development, critical thinking, and moral responsibility.</p>
+        
+        <h3>Our Vision</h3>
+        <p>We aim to be a center of academic excellence where students are inspired to become responsible and successful individuals, contributing positively to society.</p>
+        
+        <a href="#contact" class="learn-more-btn">Contact Us</a>
+      </div>
+      <div class="about-image">
+        <img src="school-image.jpg" alt="Shree Janaprakash Secondary School">
+      </div>
+    </div>
+  </section>
+
+  <section id="admissions">
+    <div class="admissions-container">
+      <h2>Admissions</h2>
+      <p>Welcome to <strong>Shree Janaprakash Secondary School</strong>. We are excited to invite new students to be part of our learning community. Our admission process is simple and transparent.</p>
+      
+      <div class="admission-process">
+        <div class="step">
+          <h3>Step 1: Inquiry</h3>
+          <p>Visit our school or contact us to learn more about the admission process, curriculum, and facilities.</p>
+        </div>
+        <div class="step">
+          <h3>Step 2: Application</h3>
+          <p>Fill out the admission form and submit the required documents.</p>
+        </div>
+        <div class="step">
+          <h3>Step 3: Entrance Test/Interview</h3>
+          <p>Students may be required to take an entrance test or attend an interview.</p>
+        </div>
+        <div class="step">
+          <h3>Step 4: Enrollment</h3>
+          <p>Upon selection, complete the enrollment by submitting the necessary fees and documents.</p>
+        </div>
+      </div>
+  
+      <div class="admission-highlights">
+        <h3>Why Choose Us?</h3>
+        <ul>
+          <li>Quality education with experienced faculty</li>
+          <li>Modern classrooms and learning resources</li>
+          <li>Focus on academic and extracurricular excellence</li>
+          <li>Scholarship opportunities for deserving students</li>
+        </ul>
+      </div>
+  
+      <a href="applynow.html" class="apply-now-btn">Apply Now</a>
+    </div>
+  </section>
+
+
+  <section id="academics">
+    <div class="container">
+      <h2>Academics</h2>
+      <p>Explore the academic structure, examination details, and student results.</p>
+  
+      <!-- Tabs for Curriculum, Exams, and Results -->
+      <div class="tabs">
+        <button class="tab-link active" onclick="openTab(event, 'curriculum')">Curriculum</button>
+        <button class="tab-link" onclick="openTab(event, 'exams')">Exams</button>
+        <button class="tab-link" onclick="openTab(event, 'results')">Results</button>
+      </div>
+  
+      <!-- Curriculum Section -->
+      <div id="curriculum" class="tab-content active">
+        <h3>Our Curriculum</h3>
+        <p>We follow a structured and well-designed curriculum that ensures students receive quality education.</p>
+        <ul>
+          <li>Grade 1-5: Foundational Learning with focus on basic subjects.</li>
+          <li>Grade 6-8: Subject specialization starts with Science, Math, and Languages.</li>
+          <li>Grade 9-10: Focused learning for SEE preparation.</li>
+          <li>Grade 11-12: Stream-based study (Science, Management, Humanities).</li>
+        </ul>
+      </div>
+  
+      <!-- Exams Section -->
+      <div id="exams" class="tab-content">
+        <h3>Examinations</h3>
+        <p>Our school conducts regular assessments to track student progress.</p>
+        <ul>
+          <li>Quarterly & Mid-Term Exams</li>
+          <li>Annual Examinations</li>
+          <li>Practical & Oral Tests</li>
+          <li>SEE and +2 Board Examinations</li>
+        </ul>
+      </div>
+  
+      <!-- Results Section -->
+      <div id="results" class="tab-content">
+        <h3>Results & Performance</h3>
+        <p>Check the latest academic results and student performance.</p>
+        <button class="results-btn" onclick="viewResults()">View Latest Results</button>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <section id="education-faculty">
+    <div class="container">
+      <h2>Our Education Faculty</h2>
+      <p>We offer a diverse range of educational faculties to cater to students' needs.</p>
+  
+      <div class="faculty-grid">
+        <!-- Faculty Card: Science -->
+        <div class="faculty-card">
+          <img src="Science Faculty.jpeg" alt="Science Faculty">
+          <h3>Science</h3>
+          <p>Providing quality education in Science and Technology.</p>
+          <button class="toggle-btn">View More</button>
+          <div class="faculty-details">
+            <ul>
+              <li>Physics</li>
+              <li>Chemistry</li>
+              <li>Biology</li>
+              <li>Mathematics</li>
+            </ul>
+          </div>
+        </div>
+  
+        <!-- Faculty Card: Management -->
+        <div class="faculty-card">
+          <img src="Management Faculty.jpeg" alt="Management Faculty">
+          <h3>Management</h3>
+          <p>Focused on Business and Accounting.</p>
+          <button class="toggle-btn">View More</button>
+          <div class="faculty-details">
+            <ul>
+              <li>Business Studies</li>
+              <li>Economics</li>
+              <li>Accounting</li>
+              <li>Marketing</li>
+            </ul>
+          </div>
+        </div>
+  
+        <!-- Faculty Card: Humanities -->
+        <div class="faculty-card">
+          <img src="Humanities Faculty.jpeg" alt="Humanities Faculty">
+          <h3>Humanities</h3>
+          <p>Covering Literature and Social Sciences.</p>
+          <button class="toggle-btn">View More</button>
+          <div class="faculty-details">
+            <ul>
+              <li>Sociology</li>
+              <li>Psychology</li>
+              <li>Political Science</li>
+              <li>History</li>
+            </ul>
+          </div>
+        </div>
+  
+        <!-- Faculty Card: Education -->
+        <div class="faculty-card">
+          <img src="school-image.jpg" alt="Education Faculty">
+          <h3>Education</h3>
+          <p>Training future educators with pedagogy courses.</p>
+          <button class="toggle-btn">View More</button>
+          <div class="faculty-details">
+            <ul>
+              <li>Teaching Methods</li>
+              <li>Classroom Management</li>
+              <li>Educational Psychology</li>
+              <li>Curriculum Design</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sports">
+    <div class="container">
+      <h2>Our Sports Activities</h2>
+      <p>We encourage students to participate in various sports for overall development.</p>
+  
+      <div class="sports-grid">
+        <!-- Sport Card: Football -->
+        <div class="sport-card">
+          <img src="football.jpg" alt="Football">
+          <h3>Football</h3>
+          <p>Join our football team and develop teamwork & leadership skills.</p>
+          <button class="toggle-btn">View More</button>
+          <div class="sport-details">
+            <ul>
+              <li>Inter-school Tournaments</li>
+              <li>Regular Training Sessions</li>
+              <li>Professional Coaches</li>
+            </ul>
+          </div>
+        </div>
+  
+        <!-- Sport Card: Basketball -->
+        <div class="sport-card">
+          <img src="basketball.jpg" alt="Basketball">
+          <h3>Basketball</h3>
+          <p>Enhance your agility and strategy with our basketball program.</p>
+          <button class="toggle-btn">View More</button>
+          <div class="sport-details">
+            <ul>
+              <li>National-Level Participation</li>
+              <li>Well-maintained Court</li>
+              <li>Weekly Competitions</li>
+            </ul>
+          </div>
+        </div>
+  
+        <!-- Sport Card: Volleyball -->
+        <div class="sport-card">
+          <img src="volleyball.jpg" alt="Volleyball">
+          <h3>Volleyball</h3>
+          <p>Perfect your skills with structured training sessions.</p>
+          <button class="toggle-btn">View More</button>
+          <div class="sport-details">
+            <ul>
+              <li>Regular Practice Matches</li>
+              <li>District-Level Championships</li>
+              <li>Advanced Skill Development</li>
+            </ul>
+          </div>
+        </div>
+  
+        <!-- Sport Card: Athletics -->
+        <div class="sport-card">
+          <img src="athletics.jpg" alt="Athletics">
+          <h3>Athletics</h3>
+          <p>Track & field events to build stamina and sportsmanship.</p>
+          <button class="toggle-btn">View More</button>
+          <div class="sport-details">
+            <ul>
+              <li>100m & 200m Races</li>
+              <li>Long Jump & High Jump</li>
+              <li>Marathon Training</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+
+  <section id="quiz">
+  <div class="container">
+    <h2>Quiz Competition</h2>
+    <p>Challenge yourself with exciting quizzes and test your knowledge!</p>
+
+    <div class="quiz-grid">
+      <!-- Quiz Card: Science -->
+      <div class="quiz-card">
+        <img src="science.jpeg" alt="Science Quiz">
+        <h3>Science Quiz</h3>
+        <p>Test your scientific knowledge with exciting questions.</p>
+        <button class="participate-btn">Participate Now</button>
+      </div>
+
+      <!-- Quiz Card: Math -->
+      <div class="quiz-card">
+        <img src="math-quiz.jpg" alt="Math Quiz">
+        <h3>Math Quiz</h3>
+        <p>Challenge your problem-solving skills with tricky math questions.</p>
+        <button class="participate-btn">Participate Now</button>
+      </div>
+
+      <!-- Quiz Card: History -->
+      <div class="quiz-card">
+        <img src="history-quiz.jpg" alt="History Quiz">
+        <h3>History Quiz</h3>
+        <p>Explore the past and test your historical knowledge.</p>
+        <button class="participate-btn">Participate Now</button>
+      </div>
+
+      <!-- Quiz Card: General Knowledge -->
+      <div class="quiz-card">
+        <img src="gk-quiz.jpg" alt="General Knowledge Quiz">
+        <h3>General Knowledge</h3>
+        <p>Enhance your knowledge with a variety of questions.</p>
+        <button class="participate-btn">Participate Now</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="quiz">
+    <div class="container">
+        <h2>Quiz Competition</h2>
+        <p>Choose a category and test your knowledge!</p>
+
+        <!-- Quiz Category Selection -->
+        <div class="quiz-categories">
+            <button class="category-btn" data-category="science">Science</button>
+            <button class="category-btn" data-category="math">Math</button>
+            <button class="category-btn" data-category="history">History</button>
+            <button class="category-btn" data-category="gk">General Knowledge</button>
+        </div>
+
+        <!-- Quiz Box (Hidden Initially) -->
+        <div id="quiz-box" class="hidden">
+            <h3 id="quiz-title"></h3>
+            <p id="question-text"></p>
+            <div id="options"></div>
+            <button id="next-btn">Next</button>
+        </div>
+
+        <!-- Score Display (Hidden Initially) -->
+        <div id="score-box" class="hidden">
+            <h3>Your Score:</h3>
+            <p id="score-text"></p>
+            <button id="retry-btn">Try Again</button>
+        </div>
+    </div>
+</section>
+  
+  
+  
+  
+  
+
+  <!-- Events Section -->
+  <section id="events" class="events">
+
+    <h2>Upcoming Events</h2>
+    <div class="event-items">
+      <div class="event-item">
+        <h3>Annual Sports Day</h3>
+        <p class="event-date">March 15, 2025</p>
+        <p class="event-description">Join us for a day filled with sports, competitions, and fun! All students and parents are welcome to participate.</p>
+        <button class="learn-more-btn" onclick="showModal('sports')">Learn More</button>
+      </div>
+      <div class="event-item">
+        <h3>Science Exhibition</h3>
+        <p class="event-date">April 5, 2025</p>
+        <p class="event-description">Explore amazing science projects presented by our students. Witness creativity and innovation in action.</p>
+        <button class="learn-more-btn" onclick="showModal('science')">Learn More</button>
+      </div>
+      <div class="event-item">
+        <h3>Annual Cultural Program</h3>
+        <p class="event-date">May 20, 2025</p>
+        <p class="event-description">Celebrate our school’s culture with performances, music, and dance from students across different grades.</p>
+        <button class="learn-more-btn" onclick="showModal('cultural')">Learn More</button>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Modal for Event Details -->
+  <div id="eventModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="modal-title"></h2>
+      <p id="modal-description"></p>
+    </div>
+  </div>
+  <!-- Gallery Section -->
+<section id="gallery">
+    <h2>School Gallery</h2>
+    <div class="gallery-container">
+      <div class="gallery-item">
+        <img src="image1.jpg" alt="School Event 1" onclick="openLightbox(this)">
+      </div>
+      <div class="gallery-item">
+        <img src="image1.jpg" alt="School Event 2" onclick="openLightbox(this)">
+      </div>
+      <div class="gallery-item">
+        <img src="image1.jpg" alt="School Event 3" onclick="openLightbox(this)">
+      </div>
+      <div class="gallery-item">
+        <img src="school-image.jpg" alt="School Event 4" onclick="openLightbox(this)">
+      </div>
+      <div class="gallery-item">
+        <img src="school-image.jpg" alt="School Event 5" onclick="openLightbox(this)">
+      </div>
+      <div class="gallery-item">
+        <img src="school-image.jpg" alt="School Event 6" onclick="openLightbox(this)">
+      </div>
+    </div>
+  </section>
+
+  
+  <section id="teachers">
+    <div class="container">
+        <h2>Meet Our Teachers</h2>
+        <p>Our dedicated and experienced faculty members.</p>
+        <div class="teacher-grid">
+            <div class="teacher-card">
+                <a href="teacher1.html">
+                <img src="logo.png" alt="Teacher 1">
+                <h3>ABC</h3>
+                <p>English</p></a>
+            </div>
+            <div class="teacher-card">
+                <img src="logo.png" alt="Teacher 2">
+                <h3>ABC </h3>
+                <p>Social Studies</p>
+            </div>
+            <div class="teacher-card">
+                <img src="logo.png" alt="Teacher 3">
+                <h3>ABC </h3>
+                <p>Computer Science</p>
+            </div>
+            <div class="teacher-card">
+                <img src="logo.png" alt="Teacher 4">
+                <h3>ABC</h3>
+                <p>Nepali</p>
+            </div>
+            <div class="teacher-card">
+                <img src="logo.png" alt="Teacher 5">
+                <h3>ABC</h3>
+                <p>Economics</p>
+            </div>
+            <div class="teacher-card">
+                <img src="logo.png" alt="Teacher 6">
+                <h3>ABC</h3>
+                <p>Accounting</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+ <!-- Library Section -->
+ <section id="library">
+    <div class="container">
+        <h2>Our Library</h2>
+        <p>Our library is a place where students can explore and expand their knowledge. It is stocked with a wide range of books on various subjects.</p>
+        
+        <div class="library-content">
+            <div class="library-info">
+                <h3>Books Collection</h3>
+                <p>We have an extensive collection of books, journals, and digital resources to help students in their academic and personal growth.</p>
+            </div>
+            <div class="library-image">
+                <img src="libary.jpeg" alt="Library Image">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Computer Section -->
+
+    <!-- More Section -->
+    <section id="more">
+        <div class="container">
+            <h2>More About Our School</h2>
+            <p>Explore additional information about our school's facilities and activities.</p>
+
+            <!-- Computer Lab Section inside More Section -->
+            <div class="more-section">
+                <h3>Computer Lab</h3>
+                <p>Our computer lab is equipped with modern computers and high-speed internet, offering a space for students to improve their technical skills and enhance their learning experience.</p>
+                
+                <!-- Features of the Computer Lab -->
+                <div class="lab-features">
+                    <h4>Features</h4>
+                    <ul>
+                        <li><strong>High-Speed Internet:</strong> Fast and reliable internet for all students to research and complete their assignments efficiently.</li>
+                        <li><strong>Advanced Computers:</strong> The lab is equipped with the latest computers that support all modern software and tools for learning.</li>
+                        <li><strong>Modern Software:</strong> Students have access to a wide range of software tools for educational purposes, including coding, design, and research applications.</li>
+                        <li><strong>24/7 Access:</strong> The computer lab is open for students to use at any time, making it convenient for extra study sessions and practice.</li>
+                    </ul>
+                </div>
+
+                <!-- Programming Languages Section -->
+                <div class="programming-languages">
+                    <h4>Programming Languages</h4>
+                    <p>Students in our school have access to a variety of programming languages to learn and enhance their coding skills. Here are the languages taught in our computer lab:</p>
+                    <div class="languages-list">
+                        <ul>
+                            <li><strong>Python:</strong> A powerful and versatile language used for web development, data science, machine learning, and more.</li>
+                            <li><strong>Java:</strong> A widely-used language for building applications, Android development, and enterprise software.</li>
+                            <li><strong>C++:</strong> A high-performance language used for system programming and game development.</li>
+                            <li><strong>JavaScript:</strong> A core technology for web development, used for building interactive and dynamic websites.</li>
+                            <li><strong>HTML/CSS:</strong> The building blocks of web design and development, used for creating and styling webpages.</li>
+                            <li><strong>PHP:</strong> A popular server-side scripting language for web development.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="lab-content">
+                    <div class="lab-info">
+                        <h4>Modern Equipment</h4>
+                        <p>The lab is designed to provide the best learning experience with the latest technology and software tools available for students.</p>
+                    </div>
+                    <div class="lab-image">
+                        <img src="computer.jpeg" alt="Computer Lab">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add More Sections Here -->
+            <!-- Example: Sports, Extra-Curriculars, etc. -->
+
+        </div>
+    </section>
+
+  
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox">
+    <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" class="lightbox-content">
+  </div>
+  <section id="news">
+    <h2>Latest News</h2>
+    <div class="news-container">
+      <div class="news-item">
+        <h3>New Sports Facilities Opened!</h3>
+        <p id="news1-summary">We are excited to announce the opening of new sports facilities at the school! <span class="read-more" onclick="toggleContent(1)">Read More</span></p>
+        <p id="news1-full" style="display: none;">The new sports facilities include a basketball court, a football field, and a modern gymnasium. These will be available for students after school hours. The grand opening event will take place next week.</p>
+      </div>
+      <div class="news-item">
+        <h3>Annual Science Fair Results</h3>
+        <p id="news2-summary">The results of this year’s Annual Science Fair have been announced. <span class="read-more" onclick="toggleContent(2)">Read More</span></p>
+        <p id="news2-full" style="display: none;">This year’s fair was a huge success with over 100 students participating. The top three projects will be sent to the regional competition. Stay tuned for more updates on the results!</p>
+      </div>
+      <div class="news-item">
+        <h3>School Celebrates Cultural Day</h3>
+        <p id="news3-summary">Our school recently hosted a Cultural Day celebration featuring performances and art displays from students. <span class="read-more" onclick="toggleContent(3)">Read More</span></p>
+        <p id="news3-full" style="display: none;">Students from all grades showcased their cultural talents through dance, drama, and visual art. The event was attended by parents, teachers, and local dignitaries.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="blog">
+  <h2>Our Latest Blog Posts</h2>
+  <div class="blog-container">
+    <div class="blog-item">
+      <h3>How to Stay Focused During Study Time</h3>
+      <p id="blog1-summary">Studying can be challenging, especially with distractions around you. Here are some tips on how to stay focused and productive while studying... <span class="read-more" onclick="toggleBlogContent(1)">Read More</span></p>
+      <p id="blog1-full" style="display: none;">To stay focused, it's important to create a conducive study environment, set clear goals, and take regular breaks. By managing your time and energy effectively, you can maximize your study sessions and achieve your learning goals...</p>
+    </div>
+    <div class="blog-item">
+      <h3>Top 5 Tips for Effective Time Management</h3>
+      <p id="blog2-summary">Time management is key to balancing academics, extracurricular activities, and personal life. Here are five tips to help you manage your time effectively... <span class="read-more" onclick="toggleBlogContent(2)">Read More</span></p>
+      <p id="blog2-full" style="display: none;">Effective time management involves prioritizing tasks, setting deadlines, avoiding procrastination, and being organized. By following these strategies, you can optimize your productivity and reduce stress...</p>
+    </div>
+    <div class="blog-item">
+      <h3>The Importance of Mental Health for Students</h3>
+      <p id="blog3-summary">Mental health is just as important as physical health, especially for students who face academic pressure. Here are some ways you can take care of your mental health... <span class="read-more" onclick="toggleBlogContent(3)">Read More</span></p>
+      <p id="blog3-full" style="display: none;">Taking care of your mental health includes practicing mindfulness, seeking support from family and friends, and managing stress through healthy habits like exercise and meditation. Don't hesitate to reach out for help when needed...</p>
+    </div>
+  </div>
+</section>
+
+<!-- Principal Section -->
+<section id="principal">
+    <div class="container">
+        <h2>Meet Our Principal</h2>
+
+        <div class="principal-profile">
+            <div class="principal-image">
+                <img src="logo.png" alt="Principal Image" />
+            </div>
+            <div class="principal-details">
+                <h3>ABC</h3>
+                <p><strong>Principal</strong></p>
+                <p>ABC  has been the principal of Shree Janaprakash Secondary School for the past 5 years. He is passionate about providing quality education and empowering students to achieve their full potential. With a strong background in educational leadership, ABC ABC believes in fostering an environment of growth, inclusivity, and innovation.</p>
+                <p><strong>Contact Information:</strong></p>
+                <ul>
+                    <li>Email: <a href="mailto:principal@example.com">principal@example.com</a></li>
+                    <li>Phone: +977 **********</li>
+                    <li>WhatsApp: +977 **********</li>
+                    <li>Facebook: <a href="https://facebook.com/" target="_blank">facebook.com/</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="principal-message">
+            <h4>Message from the Principal</h4>
+            <p>Welcome to Shree Janaprakash Secondary School! Our school is committed to providing a holistic education that prepares students for success in the 21st century. We believe in nurturing students’ academic, social, and emotional growth, ensuring they become responsible citizens and leaders of tomorrow. I am proud of our dedicated teachers, staff, and students who work together to create a positive and engaging learning environment.</p>
+            <p>Thank you for being part of our wonderful school community.</p>
+        </div>
+    </div>
+</section>
+
+
+<section id="contact">
+    <h2>Contact Us</h2>
+    <div class="contact-container">
+      <form id="contact-form">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+        
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </div>
+    <div class="contact-info">
+      <p><strong>Address:</strong> Shree Janaprakash Secondary School, Joshipur-2, Kailali</p>
+      <p><strong>Phone:</strong> +977-123456789</p>
+      <p><strong>Email:</strong> info@janaprakashschool.edu.np</p>
+    </div>
+  </section>
+  
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+  
+      // Prepare the form data
+      var formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value
+      };
+  
+      // Send the data to the Google Apps Script
+      fetch('https://script.google.com/macros/s/AKfycbwvAot7Lokf5s-1KkFL-1O_54vhiA6rylzCZQCUcHBAcHpJXxy0S2PG-2Q65v4IyvFt/exec', {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message);  // Success or error message from Google Apps Script
+        document.getElementById('contact-form').reset(); // Clear the form after submission
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+      });
+    });
+  </script>
+  
+  
+  
+
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2025 Shree Janaprakash Secondary School | All Rights Reserved</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
